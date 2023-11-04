@@ -1,0 +1,46 @@
+body, h1, h2, h3, p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Make the container full height of the viewport */
+}
+
+.file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498DB;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    min-width: 10em;
+}
+
+#fileToUpload {
+    display: none;
+}
+
+.error-message {
+    display: none; /* Initially hidden */
+    color: #FF0000; /* Text color for error messages */
+    background-color: #FFECEC; /* Background color for error messages */
+    border: 1px solid #FF0000; /* Border for error messages */
+    padding: 10px; /* Padding around the message */
+    margin-bottom: 10px; /* Spacing between messages */
+}
+
+/* Show the error message box when it contains text */
+.error-message:empty {
+    display: none;
+}
+
+.error-message:not(:empty) {
+    display: block;
+}
