@@ -1,0 +1,33 @@
+body, h1, h2, h3, p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+}
+
+#data {
+    width: 49%;
+    float: right;
+    height: 50%;
+}
+
+.table-hover-row:hover {
+    background-color: #f0f0f0; /* Change to the desired hover background color */
+}
