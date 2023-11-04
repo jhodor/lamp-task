@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db:
+    container_name: lamp-db
+    image: mysql:8.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=secure
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=dbpassword
+      - MYSQL_DATABASE=lamp
+
+  web:
+    container_name: lamp-app
+    build:
+      context: ./
+    ports:
+      - "8080:80"
+    volumes:
+      - ./docker-php.ini:/usr/local/etc/php/conf.d/docker-php.ini
+      - ../web:/var/www/html
+    depends_on:
+      - db
