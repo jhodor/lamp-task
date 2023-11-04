@@ -98,7 +98,7 @@ Then you select an address you are interested in using the paginated table. You 
 on the appropriate header, or search the contents using the search field. When you select the address, it is displayed
 as a pin with a label on the map.
 
-Finally, if you press the 'Show 5 nearest neighbors' button, the map will automatically adjust to show the previously
+Finally, if you press the 'Show 5 nearest locations' button, the map will automatically adjust to show the previously
 selected address along with its 5 nearest neighbors. Their addresses and the distances from the selected address are
 shown in the table.
 
