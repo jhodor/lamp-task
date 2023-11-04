@@ -1,5 +1,6 @@
 var map;
 var marker;
+var markersGroup;
 var table;
 
 $(document).ready(function() {
@@ -39,7 +40,6 @@ $(document).ready(function() {
         $(this).removeClass('table-hover-row');
     });
 
-
     // Enable row selection
     $('#myTable tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
@@ -57,6 +57,9 @@ $(document).ready(function() {
             map.setView([latitude, longitude], 12);
             if (marker) {
                 marker.remove();
+            }
+            if (markersGroup) {
+                map.removeLayer(markersGroup);
             }
             marker = L.marker([latitude, longitude]).addTo(map);
             marker.bindPopup(address).openPopup();

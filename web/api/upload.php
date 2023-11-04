@@ -112,4 +112,4 @@ $newFileName = processUpload();
 $pdo = connectDB();
 createTableIfNotExists($pdo);
 importCSV($pdo, $newFileName);
-echo "Import finished.";
+header("Location: /table.html");
