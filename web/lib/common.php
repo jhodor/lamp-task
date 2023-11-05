@@ -1,11 +1,11 @@
 <?php
 
-function connectDB()
+function connectDB(): PDO
 {
-    $dbHost = getenv('MYSQL_HOST');
-    $dbUser = getenv('MYSQL_USER');
-    $dbPassword = getenv('MYSQL_PASSWORD');
-    $dbName = getenv('MYSQL_DATABASE');
+    $dbHost = getenv('MYSQL_HOST') ?: '';
+    $dbUser = getenv('MYSQL_USER') ?: '';
+    $dbPassword = getenv('MYSQL_PASSWORD') ?: '';
+    $dbName = getenv('MYSQL_DATABASE') ?: '';
 
     try {
         $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
@@ -16,7 +16,7 @@ function connectDB()
     return $pdo;
 }
 
-function parseDotEnv($filePath = '')
+function parseDotEnv(string $filePath = ''): void
 {
     $envFile = $filePath ? $filePath : $_SERVER['DOCUMENT_ROOT'] . '/.env';
 

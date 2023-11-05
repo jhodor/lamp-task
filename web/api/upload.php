@@ -49,10 +49,18 @@ function processUpload(): string
     return $targetPath;
 }
 
-function createTableIfNotExists($pdo, string $tableName = 'locations')
+function createTableIfNotExists(PDO $pdo, string $tableName = 'locations'): void
 {
-    $query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = '{$tableName}'";
-    $tableExists = $pdo->query($query)->fetch(PDO::FETCH_COLUMN);
+    $tableExists = 0;
+    try {
+        $query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = '{$tableName}'";
+        $stmt = $pdo->query($query);
+        if ($stmt) {
+            $tableExists = $stmt->fetchColumn();
+        }
+    } catch (PDOException $e) {
+        error("Can not check if {$tableName} exists");
+    }
 
     if ($tableExists === 0) {
         try {
@@ -73,15 +81,19 @@ function createTableIfNotExists($pdo, string $tableName = 'locations')
     }
 }
 
-function importCSV($pdo, string $csvFile, string $tableName = 'locations') {
+function importCSV(PDO $pdo, string $csvFile, string $tableName = 'locations'): void
+{
     try {
         $handle = fopen($csvFile, "r");
         if ($handle === false) {
-            error("Error opening CSV file");
+            return;
         }
 
         $requiredColumns = ['Address', 'City', 'State', 'Zip', 'Latitude', 'Longitude'];
         $header = fgetcsv($handle, 1000, ",");
+        if (!$header) {
+            return;
+        }
         $missingColumns = array_diff($requiredColumns, $header);
         if (!empty($missingColumns)) {
             error("The following required columns are missing: " . implode(', ', $missingColumns));

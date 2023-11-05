@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 include('../lib/common.php');
 
-function getAllLocations($pdo)
+function getAllLocations(PDO $pdo): void
 {
     $batchSize = 1000;
 

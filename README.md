@@ -77,8 +77,8 @@ docker-compose up
 
 Then open the application use http://localhost:8080/ and upload `data.csv` file.
 
-When you are done, just press Ctrl-c to stop Docker containers. Use command `docker rm lamp-app lamp-db` to remove them
-and `docker image rm lamp-task-web` to remove downloaded image.
+When you are done, just press Ctrl-c to stop Docker containers. Use command `docker rm lamp-task-web lamp-task-db`
+to remove them and `docker image rm lamp-task-web` to remove builded image.
 
 ### Manual deployment on existing LAMP server
 

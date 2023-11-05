@@ -4,32 +4,30 @@ declare(strict_types=1);
 
 include('../lib/common.php');
 
-function getLocationById($pdo, $id) {
-
+function getLocationById(PDO $pdo, int $id): mixed
+{
     try {
-        $sql = "SELECT * FROM locations WHERE id = :id";
-
+        $sql = "SELECT id, address, city, state, zip, latitude, longitude FROM locations WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $results = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($results === false) {
+        if ($results) {
+            return $results;
+        } else {
             // If no record was found, you can throw a custom exception.
             throw new Exception("Location with ID $id not found");
         }
-
-        return $results;
     } catch (PDOException $e) {
         error_log('Database Error: ' . $e->getMessage());
-        return null;
     } catch (Exception $e) {
         error_log('Custom Error: ' . $e->getMessage());
-        return null;
     }
+    return null;
 }
 
-function searchForNeighbours($pdo, $id) {
+function searchForNeighbours(PDO $pdo, int $id): mixed
+{
 
     $locationData = getLocationById($pdo, $id);
 
