@@ -32,7 +32,10 @@ function getAllLocations(PDO $pdo): void
         if (!empty($batch)) {
             $i = 0;
             foreach ($batch as $row) {
-                echo json_encode($row);
+                $json = json_encode($row);
+                if ($json) {
+                    echo $json;
+                }
                 $i++;
                 // Add a comma if there are more records coming
                 if ($page * $pageSize + $i < $rowCount) {

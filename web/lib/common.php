@@ -18,7 +18,7 @@ function connectDB(): PDO
 
 function parseDotEnv(string $filePath = ''): void
 {
-    $envFile = $filePath ? $filePath : $_SERVER['DOCUMENT_ROOT'] . '/.env';
+    $envFile = $filePath ?: $_SERVER['DOCUMENT_ROOT'] . '/.env';
 
     if (file_exists($envFile)) {
         $envVars = parse_ini_file($envFile);

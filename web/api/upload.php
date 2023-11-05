@@ -53,11 +53,11 @@ function createTableIfNotExists(PDO $pdo, string $tableName = 'locations'): void
 {
     $tableExists = 0;
     try {
-        $query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = '{$tableName}'";
-        $stmt = $pdo->query($query);
-        if ($stmt) {
-            $tableExists = $stmt->fetchColumn();
-        }
+        $query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = :table_name";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':table_name', $tableName, PDO::PARAM_STR);
+        $stmt->execute();
+        $tableExists = $stmt->fetchColumn();
     } catch (PDOException $e) {
         error("Can not check if {$tableName} exists");
     }
