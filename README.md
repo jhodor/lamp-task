@@ -111,6 +111,7 @@ business requirement.
 OpenStreetMap was chosen as the map provider because, unlike Google Maps, it does not require an API key, making
 it easier to deploy.
 
-It was possible to use `composer` to include `Symfony` or `Laravel` libraries in the backend. They allow using ORM
-to access the data objects and to parse the configuration file, but for a single object type it would probably be
-an overkill solution (KISS principle) so I decided to use plain PDO calls and make my own `.env` parser.
+It was possible to use `composer` to include `Symfony` or `Laravel` as object oriented libraries that provide MVC
+separation in the backend. They also allow using ORM classes to access the data objects that can parse the configuration
+file, but for a single object type (`location`) this would probably be an overkill solution (KISS principle).
+So I decided to just use simple PDO calls and write my own `.env` parser.
