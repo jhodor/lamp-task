@@ -1,8 +1,8 @@
 version: '3'
-
+name: lamp-task
 services:
   db:
-    container_name: lamp-db
+    container_name: lamp-task-db
     image: mysql:8.2
     environment:
       - MYSQL_ROOT_PASSWORD=secure
@@ -11,7 +11,7 @@ services:
       - MYSQL_DATABASE=lamp
 
   web:
-    container_name: lamp-app
+    container_name: lamp-task-web
     build:
       context: ./
     ports:
