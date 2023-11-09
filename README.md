@@ -86,7 +86,7 @@ If you want to deploy this application manually on an existing LAMP configuratio
 - prepare a virtual server pointing to the `./web` directory as a `DOCUMENT_ROOT`
 - make sure that `web/uploads` directory is writable by your httpd process
 - configure database access settings in the `web/.env` file. Note that the application will automatically create
-  or truncate `locations` table in it's database when you upload the CSV file.
+  or truncate `locations` table in its database when you upload the CSV file.
 - open http://localhost:8080/ and upload `data.csv` with locations.
 
 ## Running the application
